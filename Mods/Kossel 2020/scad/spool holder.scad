@@ -13,9 +13,9 @@ difference(){
         cylinder(20,d=3.5);
     
     //screw head indent
-    translate([10,10,3])
+    translate([10,10,4])
         cylinder(20,d=6);  
-    translate([10,29,3])
+    translate([10,29,4])
         cylinder(20,d=6);
     }
     

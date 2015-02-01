@@ -1,6 +1,6 @@
 //kossel 2020 (bowden) extruder mount - mounts to vertical extrusion
 
-$fn=10;
+$fn=30;
 
 screw_diameter = 3.5;
 screw_head = 6.4;

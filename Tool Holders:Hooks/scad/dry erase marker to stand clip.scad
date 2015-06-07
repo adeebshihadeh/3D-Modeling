@@ -1,29 +1,28 @@
+// Whiteboard stand marker clip
+
 $fn = 40;
 
-//clips onto marker
-difference(){
+union(){
+// clip for marker
+color("red")
     difference(){
-    cylinder(15, d=20, center = true);
-    
-    translate([0,0,-1])
-        cylinder(18, d=17, center = true);
-    }
-    
-    translate([5,0,-1])
-        cylinder(20,d=13, center = true);
+        difference(){
+        	cylinder(15, d=20, center = true);
+        
+        	translate([0,0,-1]) cylinder(18, d=17, center = true);
+        }
+        translate([5,0,-1]) cylinder(20,d=13, center = true);
     }
 
-//clips onto stand
-translate([-18.5,0,0])
-rotate([0,180,0])
-difference(){
+    // clips for whiteboard
+    translate([-18,0,0]) rotate([0,180,0])
     difference(){
-    cylinder(15, d=18, center = true);
-    
-    translate([0,0,-1])
-        cylinder(18, d=15.5, center = true);
+        difference(){
+        	cylinder(15, d=18, center = true);
+        
+        	translate([0,0,-1]) cylinder(18, d=15.5, center = true);
+        }
+        
+        translate([3,0,-1]) cylinder(20,d=13, center = true);
     }
-    
-    translate([5,0,-1])
-        cylinder(20,d=13, center = true);
-    }
+}

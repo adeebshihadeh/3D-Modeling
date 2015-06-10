@@ -37,9 +37,11 @@ module printrbotExtruderAdapter(){
             
             color("red") translate([-15,-8,-1]) cylinder(d=3, h=thickness*2, center=true, $fn=holeRes);
             color("green") translate([15,-8,-1]) cylinder(d=3, h=thickness*2, center=true, $fn=holeRes);
-        }   
+        }
+        hull(){
+            rotate([25]) translate([-12,-22,11]) cube([28,3,8], centered=true);
+        }
     }
 }
 
 printrbotExtruderAdapter();
-

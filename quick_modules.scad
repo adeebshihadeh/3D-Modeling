@@ -14,5 +14,5 @@ module centeredRoundedRect(xWidth, yDepth, zHeight, diam){
     translate([-xWidth/2, -yDepth/2, -zHeight/2]) roundedRect(xWidth, yDepth, zHeight, diam);
 }
 
-//translate([25, 25, 0]) roundedRect(10, 10, 10, 1);
-//centeredRoundedRect(10, 10, 10, 1);
+translate([25, 25, 0]) roundedRect(10, 10, 10, 1);
+centeredRoundedRect(10, 10, 10, 1);

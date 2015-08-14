@@ -1,4 +1,4 @@
-// Ubis hotend mount for MTW MiniMax (Bowden extruder)
+// bowden hotend mount for MTW MiniMax (Bowden extruder)
 
 thickness = 5;
 width = 32;
@@ -8,7 +8,7 @@ holeDiam = 3.5;
 
 use <../../../quick_modules.scad>;
 
-module ubisMount(){
+module bowdenMount(){
     union(){
         // MiniMax mount
         height = 60;
@@ -36,12 +36,12 @@ module ubisMount(){
             translate([25.6,stickOut,9.2], $fn=holeRes) rotate([270]) cylinder(d=6,h=thickness*2);
         }
         
-        // Mount for Ubis hotend
+        // Mount for hotend
         translate([3,-4,0])  difference(){
             translate([0,-2,0]) centeredRoundedRect(width,35,thickness,3);
             
             translate([1,0,0]) union(){
-                 // UBIS hotend hole
+                 // hotend hole
                 translate([-1,0,0]) cylinder(d=17.5, h=thickness*2, center=true, $fn=holeRes);
             
                 // mounting holes
@@ -52,4 +52,4 @@ module ubisMount(){
     }
 }
 
-ubisMount();
+bowdenMount();

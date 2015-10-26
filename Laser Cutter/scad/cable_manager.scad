@@ -19,7 +19,7 @@ module cableManager(){
         
         // cable grip
         gripHeight = screwOD*1.2;
-        translate([length,gripHeight/2,(thickness+cableOD*1.2/2)-cableOD*0.1]) rotate([90]) difference(){
+        translate([length+0.5,gripHeight/2,(thickness+cableOD*1.2/2)-cableOD*0.1]) rotate([90]) difference(){
             cylinder(d=cableOD*cableGripThicknessMultiplier,h=gripHeight,$fn=100);
             translate([0,0,-1]) cylinder(d=cableOD,h=gripHeight*2,$fn=100);
             translate([0,2,-1]) cylinder(d=cableOD,h=gripHeight*2,$fn=100);

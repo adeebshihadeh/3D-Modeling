@@ -1,36 +1,28 @@
-//kossel 2020 (bowden) extruder mount - mounts to vertical extrusion
+// kossel 2020 (bowden) extruder mount - mounts to motor attached to extruder such as Airtripper's Bowden Extruder
+
+use <MCAD/boxes.scad>;
 
 $fn=30;
 
 screw_diameter = 4;
 screw_head = 7;
 screw_head_height = 2;
-height = 5.5;
+width = 50;
+height = 60;
+extrusion_mounting_hole_sep = 45;
+motor_mount_hole_sep = 30;
+thickness = 5.5;
 
 difference(){
-    //main body
-    //makes rounded corners
-    minkowski(){
-        cube([50,105,height]);
-        cylinder(h=height,d=3);
-        }
-    
-    //subtract Z height added by minkowski sum
-    translate([-5,-5,height]) cube(height*200);
+    roundedBox([width,height,thickness],3,true);
 
-    //holes for screw head
-    translate([35,12,height-screw_head_height]) cylinder(20,d=screw_head);
-    translate([35,85,height-screw_head_height]) cylinder(20,d=screw_head);
-    
-    //screw holes for mounting to extrusion
-    translate([35,12,-1]) cylinder(20,d=screw_diameter);
-    translate([35,85,-1]) cylinder(20,d=screw_diameter);
-    
-    //holes for screw head
-    translate([15,35,height-screw_head_height]) cylinder(20,d=screw_head);
-    translate([15,65,height-screw_head_height]) cylinder(20,d=screw_head);
-    
-    //screw holes for mounting extruder
-    translate([15,35,-1]) cylinder(20,d=screw_diameter);
-    translate([15,66,-1]) cylinder(20,d=screw_diameter);
+    translate([17,0,0]) for(y=[-1,1]){
+        translate([0,extrusion_mounting_hole_sep/2*y,0]) cylinder(h=thickness+1,d=screw_diameter,center=true);
+        // screw head indent
+        translate([0,extrusion_mounting_hole_sep/2*y,thickness/2-screw_head_height]) cylinder(h=20,d=screw_head);
     }
+    
+    translate([-15,0,0]) for(y=[-1,1]){
+        translate([0,motor_mount_hole_sep/2*y,0]) cylinder(h=thickness+1,d=screw_diameter,center=true);
+    }
+}

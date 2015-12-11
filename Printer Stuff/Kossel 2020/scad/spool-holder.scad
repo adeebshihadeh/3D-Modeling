@@ -1,23 +1,33 @@
-// kossel spool holder
+// kossel 2020 spool holder
 
-module spoolHolder(height=20, screwDiam = 3.5, screwHeadDiam = 6.5, diameter=35){
-    difference(){
-        cylinder(d=diameter,h=height,center=true,$fn=50);
+use <MCAD/boxes.scad>;
+
+// setup to use M8 rod
+rodDiam = 8.3;
+
+mountWidth = 64;
+mountThickness = 5;
+mountScrewDiam = 3.5;
+mountHoleSep = 50;
+
+spoolMountHeight = 90;
+spoolMountWidth = 30;
+spoolMountDepth = 20;
+
+module spoolHolder(){
+	difference() {
+		union(){
+			roundedBox([spoolMountDepth, mountWidth, mountThickness], 5, true,$fn=25,center=true);
+			translate([0, 0, spoolMountHeight/2]) roundedBox([spoolMountDepth, spoolMountWidth, spoolMountHeight],5,true,center=true,$fn=30);
+		}
         
-        // 608 bearing hole
-        translate([3,0,height/2-7/2]) cylinder(d=22.5,h=7,center=true,$fn=50);
-        
-        translate([3,0,0]) rotae=cylinder(d=8.5,h=height+1,center=true,$fn=50);
-        
-        for(y=[-1,1]){
-            offset = 5;
-            translate([0,(diameter/2-offset)*y,0]) rotate([90,0,90]) cylinder(d=screwDiam,h=diameter+1,center=true,$fn=30);
-            // screw head hole
-            #translate([diameter/2,(diameter/2-offset)*y,0]) rotate([90,0,90]) cylinder(d=screwHeadDiam,h=diameter,center=true,$fn=30);
+        offset = 8;
+        translate([0, 0, spoolMountHeight-offset]) rotate([90,0,120]) union(){
+            cylinder(d=rodDiam,h=spoolMountDepth*2,$fn=45,center=true);
         }
-        translate([-27,0,0]) cube([diameter,diameter, height+1],center=true);
-        
-    }
+        for(i=[-1,1]){
+            translate([0,mountHoleSep/2*i,0]) cylinder(d=mountScrewDiam,h=mountThickness+1,$fn=25,center=true);   
+        }
+	}
 }
-
 spoolHolder();

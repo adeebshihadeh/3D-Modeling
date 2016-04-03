@@ -1,8 +1,8 @@
-// Thing O Matic J-Head mount
+// Thing-O-Matic groovemount
 
 use <MCAD/boxes.scad>;
 
-module jheadMount(thickness=4.5,mountingHoleSep=104){
+module groovemount(thickness=4.5,mountingHoleSep=104,mountDiam=12.4){
     union(){
         difference(){
             union(){
@@ -14,13 +14,11 @@ module jheadMount(thickness=4.5,mountingHoleSep=104){
             }
             // groovemount
             hull(){
-               mountDiam = 12.4;
               cylinder(d=mountDiam,h=thickness+1,center=true,$fn=40);  
               translate([0,-10,0]) cube([mountDiam,20,thickness+1],center=true);
             }
         }
-        
     }
 }
 
-jheadMount();
+groovemount();
